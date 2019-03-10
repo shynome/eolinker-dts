@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>项目名称</th>
+      <th>版本号</th>
+      <th>更新日期</th>
+      <th>更新时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each projectList}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{version}}</td>
+      <td>{{updateDate}}</td>
+      <td>{{updateTime}}</td>
+      <td><a href="{{url}}" title="{{name}}">下载</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
