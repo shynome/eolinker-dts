@@ -18,6 +18,7 @@ RUN set -x \
 WORKDIR /app
 
 ENV DB_HOST='' \
+    DB_HOST='3306' \
     DB_DATABASE='' \
     DB_USER='' \
     DB_PASS='' \
