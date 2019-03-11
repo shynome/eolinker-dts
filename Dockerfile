@@ -17,4 +17,11 @@ RUN set -x \
 
 WORKDIR /app
 
+ENV DB_HOST='' \
+    DB_DATABASE='' \
+    DB_USER='' \
+    DB_PASS='' \
+    TZ='Asia/Shanghai' \
+    SERVER_PORT='80'
+
 CMD [ "npm", "start" ]
