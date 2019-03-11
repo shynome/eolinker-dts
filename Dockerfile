@@ -11,8 +11,8 @@ RUN npm i && mkdir -p /app && mv /tmp/pkg/node_modules /app
 COPY npm-pack.tgz /tmp/npm-pack.tgz
 RUN set -x \
   && tar -xzf /tmp/npm-pack.tgz -C /tmp \
-  && tar -czf /tmp/npm-pack.tgz -C /tmp/package \
-  && tar -xzf /tmp/npm-pack.tgz -C app \
+  && tar -czf /tmp/npm-pack.tgz -C /tmp/package . \
+  && tar -xzf /tmp/npm-pack.tgz -C /app \
   && rm -rf /tmp/npm-pack.tgz /tmp/pkg $(npm config get cache)
 
 WORKDIR /app
