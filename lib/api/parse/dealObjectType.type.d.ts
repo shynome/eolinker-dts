@@ -1,22 +1,24 @@
 import { PropertyDeclaration } from "dts-dom";
-import { ResultRule, ResultParam } from "./result.type";
+import { ResultRule, ResultParam, ResultParamValue } from "./result.type";
 import { RequestParam } from "./params.type";
 
-type ResultParamAll = ResultParam & ResultRule
+type ResultParamAll = ResultParam & ResultRule;
 
-type CommonParams = (ResultParamAll | RequestParam) & {
-  paramLimit?: string
-}
+type CommonParams = {
+  paramType: string;
+  paramKey: string;
+  paramOptionValue: ResultParamValue[];
+  paramNotNull: number;
+  paramName: string;
+  paramValue: string;
+} & {
+  paramLimit?: string;
+};
 
 export interface MakeDealObjectType {
-  (options: {
-    rules_keys: string[]
-    result_rules: CommonParams[]
-    result_params: CommonParams[]
-    tmp_obj: { [k: string]: boolean }
-  }): DealObjectType
+  (options: { fields: CommonParams[] }): DealObjectType;
 }
 
 export interface DealObjectType {
-  (rule: CommonParams, parentPrefixLength?: number): PropertyDeclaration
+  (rule: CommonParams, parentPrefixLength?: number): PropertyDeclaration;
 }
