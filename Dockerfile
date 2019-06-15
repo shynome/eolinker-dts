@@ -1,20 +1,22 @@
-FROM node:10-alpine
-
-RUN apk add --no-cache tzdata
+FROM node:10-alpine as Build
 
 ENV NODE_ENV=production
 
 WORKDIR /tmp/pkg
 COPY pkg-deps.json /tmp/pkg/package.json
-RUN npm i && mkdir -p /app && mv /tmp/pkg/node_modules /app
+RUN npm i
 
-COPY npm-pack.tgz /tmp/npm-pack.tgz
-RUN set -x \
-  && tar -xzf /tmp/npm-pack.tgz -C /tmp \
-  && tar -cC /tmp/package/ . | tar -xC /app \
-  && rm -rf /tmp/npm-pack.tgz /tmp/package/ /tmp/pkg $(npm config get cache)
+FROM node:10-alpine 
 
-WORKDIR /app
+RUN apk add --no-cache tzdata
+
+ENV NODE_ENV=production
+
+COPY --from=Build /tmp/pkg/node_modules /app/package/node_modules
+
+ADD npm-pack.tgz /app
+
+WORKDIR /app/package/
 
 ENV DB_HOST='' \
     DB_PORT='3306' \
