@@ -1,6 +1,12 @@
+### 0.1.2
+
+#### fix
+
+- `eoObject` 和 `eoJson` 现在的类型是 `{[k:string]:any}` 了
+
 ### 0.1.1
 
-#### 改进
+#### fix
 
 - request [data] 请求参数递归解析
 
