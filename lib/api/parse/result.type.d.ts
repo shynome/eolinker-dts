@@ -13,6 +13,10 @@ export interface ResultParam {
   apiID           : number
 }
 
+export interface ResultParam {
+  toJSON():Omit<ResultParam,'toJSON'>
+}
+
 export interface ResultRule {
   $index    : number;
   paramKey  : string;
